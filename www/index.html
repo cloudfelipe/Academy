@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+  </head>
+  <body ng-app="starter">
+
+    <ion-nav-bar class="bar-positive">
+      <ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+             
+    <ion-nav-view></ion-nav-view>
+
+    <script id="home.html" type="text/ng-template">
+
+      <ion-view title="Home">
+        <ion-content padding="true">
+          <h2>Home Page</h2>
+          <p>Heres the main route for the app.</p>
+          <p>
+            <a class="button icon icon-right ion-chevron-right" href="#/home2">Scientific Facts</a>
+          </p>
+        </ion-content>
+      </ion-view>
+
+    </script>
+
+    <script id="todos.html" type="text/ng-template">
+      <!-- The title of the ion-view will be shown on the navbar -->
+      /** <!--
+      <ion-view view-title="Home2.html">
+          <ion-content ng-controller="HomeCtrl">
+          <a href="#/music">Go to music page!</a>
+        </ion-content>
+      </ion-view> --> **/
+
+      <ion-view title="Todos">
+
+        <ion-content ng-controller="TodosCtrl">
+            <ion-list>
+              <ion-item ng-repeat="todo in todos" class="item item-icon-right">
+                <span ng-class="{done: todo.done}">{{todo.title}}</span>
+              </ion-item>
+            </ion-list>
+        </ion-content>
+
+      </ion-view>
+
+      
+
+    </script>
+
+    <script id="question.html" type="text/ng-template">
+
+    <!--
+    <ion-view title="Question">
+        <ion-content padding="true" scroll="false" class="has-header" ng-controller"QuestionCtrl" >
+            <label class="item item-input">
+                <span class="input-label"></span><textarea placeholder=""> d</textarea>
+            </label>
+            <div>{{greeting}}</div>
+            <button class="button button-dark button-block">A</button>
+            <button class="button button-dark button-block">B</button>
+            <button class="button button-dark button-block">C</button>
+            <button class="button button-dark button-block">D</button>
+        </ion-content>
+    </ion-view>
+
+    -->
+
+    <ion-view title="Question">
+
+      <ion-content padding="true" scroll="false"  class="has-header" ng-controller="QuestionCtrl">
+        <label class="item item-input">
+                <textarea readonly rows="10" >{{item.questionText}}</textarea>
+        </label>
+
+        <button on-tap='push("A")' ng-class="{'button button-block button-dark': normal , 'button button-block button-assertive': item.correctAnswer != name, 'button button-block button-balanced': item.correctAnswer == name}"  name="A">{{item.answerA}}</button>
+        <button on-tap='push("B")' ng-class="{'button button-block button-dark': normal , 'button button-block button-assertive': !normal}" name="B">{{item.answerB}}</button>
+        <button on-tap='push("C")' class="button button-dark button-block" name="C">{{item.answerC}}</button>
+        <button on-tap='push("D")' class="button button-dark button-block" name="D">{{item.answerD}}</button>
+        <button on-tap='push("E")' class="button button-dark button-block" name="E">{{item.answerE}}</button>
+
+        <p>The food is {{spice}} spicy!</p>
+
+      </ion-content>
+
+    </ion-view>
+
+    </script>
+
+    <script id="question2.html" type="text/ng-template">
+
+    <ion-view title="Question2">
+
+      <ion-content padding="true" scroll="false"  class="has-header" ng-controller="Question2Ctrl">
+        <label class="item item-input">
+                <textarea readonly rows="10" >{{item.questionText}}</textarea>
+        </label>
+
+        <!--
+
+        <ion-item ng-repeat="item in item.answers[0]"
+
+        <button on-tap='push(item)' class="button button-dark button-block" name="button">{{item}}</button>
+
+
+        </ion-item> -->
+
+        <button class="button button-black button-block"
+          ng-repeat="item in item2[1].answers"
+          ng-click="push($index, item)"
+          ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}"
+          >{{item.answerText}}</button>
+
+          <div class="row">
+            <button class="col col-75 button button-outline button-positive">
+              Next
+            </button>
+          </div>
+
+      </ion-content>
+
+    </ion-view>
+
+    </script>
+
+  </body>
+</html>
