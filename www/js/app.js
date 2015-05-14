@@ -10,24 +10,41 @@ angular.module('starter', ['ionic'])
   $urlRouterProvider.otherwise('/')
 
   $stateProvider.state('home', {
-    url: '/home',
+    url: '/',
     templateUrl: 'home.html'
   })
-
+  /**
   $stateProvider
   .state('question', {
     url: '/',
     templateUrl: 'question2.html'
-  })
+  })**/
 
   $stateProvider
-  .state('index', {
-    url: '/home2',
-    templateUrl: 'todos.html'
+  .state('todos', {
+    url: '/todos',
+    templateUrl: 'todos.html',
+    controller: 'TodosCtrl'
   })
 
-  .state('question.detail', {
-    url: '/:todo',
+  .state('detail', {
+    url: '/todos/:todo',
+    templateUrl: 'todo.html',
+    controller: 'TodoCtrl',
+    resolve: {
+      todo: function($stateParams, TodosService) {
+        return TodosService.getTodo($stateParams.todo)
+      }
+    }
+  })
+
+  .state('score', {
+    url: '/score',
+    templateUrl: 'score.html'
+  })
+
+  .state('questionIndex', {
+    url: '/questions/:todo',
     templateUrl: 'question2.html',
     controller: 'Question2Ctrl',
     resolve: {
@@ -56,6 +73,8 @@ angular.module('starter', ['ionic'])
 })
 
 //Def factories
+
+/**
 .factory('QuestionsService', function() {
   var questions = [
       { "questionText": "A woman with essential hypertension presents at 6 weeks gestation. Which of the following anti-hypertensive medications would NOT be appropriate for her to take in pregnancy?", 
@@ -95,10 +114,12 @@ angular.module('starter', ['ionic'])
   return {
     questions: questions,
     getQuestion: function(index) {
+      alert(index);
       return questions[index]
     }
   }
 })
+**/
 
 .factory('QuestionsService2', function() {
   var questions = [
@@ -150,10 +171,32 @@ angular.module('starter', ['ionic'])
 
   ]
 
+  var contador = 1;
+
   return {
     questions: questions,
     getQuestion: function(index) {
+      //contador++;
       return questions[index]
+    },
+    getConter: function(d){
+      return contador++;
+    }
+
+  };
+})
+
+.factory('TodosService', function() {
+  var todos = [
+      {title: "Take out the trash", done: true},
+      {title: "Do laundry", done: false},
+      {title: "Start cooking dinner", done: false}
+   ]
+
+  return {
+    todos: todos,
+    getTodo: function(index) {
+      return todos[index]
     }
   }
 })
@@ -161,12 +204,12 @@ angular.module('starter', ['ionic'])
 
 //Def controllers
 
-.controller('TodosCtrl', function($scope) {
-  $scope.todos = [
-      {title: "Take out the trash", done: true},
-      {title: "Do laundry", done: true},
-      {title: "Start cooking dinner", done: false}
-   ]
+.controller('TodosCtrl', function($scope, TodosService) {
+  $scope.todos = TodosService.todos
+})
+
+.controller('TodoCtrl', function($scope, todo) {
+  $scope.todo = todo
 })
 
 
@@ -206,14 +249,30 @@ angular.module('starter', ['ionic'])
 
 })
 
+/**
+* $ionicNavBarDelegate: NavigationBar's delegate, to change the navigation title 
+**/
+.controller('Question2Ctrl', function($scope, todo, QuestionsService2, $ionicNavBarDelegate, $state){
 
-.controller('Question2Ctrl', function($scope, QuestionsService2){
+  var currentCount = QuestionsService2.getConter();
+  $scope.countIntoTitle = "" + (currentCount) + " of " + QuestionsService2.questions.length;
 
-  $scope.item2 = QuestionsService2.questions;
+  /**
+  $scope.setNavTitle = function(title) {
+    $ionicNavBarDelegate.title("" + (currentCount) + " of " + QuestionsService2.questions.length);
+  }
+  **/
+
+  $scope.questionIndex = currentCount;
+
+  $scope.item = todo;
 
 
 
   $scope.push = function(index, element) {
+
+    alert(currentCount);
+
     /**
     var keyName = "";
     switch(index) {
@@ -235,15 +294,26 @@ angular.module('starter', ['ionic'])
       return keyName;
     }
     **/
-    var cos = $scope.item2.correctAnswer;
+    var cos = $scope.item.correctAnswer;
 
     if (index == cos) {
       element.state = "great";
     }else{
       element.state = "bad";
-      $scope.item2.answers[cos].state = "great";
+      $scope.item.answers[cos].state = "great";
     };
 
+  }
+
+  $scope.nextQuestion = function(questionIndex){
+
+    if (QuestionsService2.questions.length < questionIndex +1) {
+      $state.go('score');
+    }else{
+      $state.go('questionIndex', {todo: questionIndex});
+    }
+
+    
   }
 
   //not working :(

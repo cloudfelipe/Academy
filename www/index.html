@@ -32,17 +32,17 @@
     <ion-nav-view></ion-nav-view>
 
     <script id="home.html" type="text/ng-template">
-
       <ion-view title="Home">
-        <ion-content padding="true">
-          <h2>Home Page</h2>
-          <p>Heres the main route for the app.</p>
-          <p>
-            <a class="button icon icon-right ion-chevron-right" href="#/home2">Scientific Facts</a>
-          </p>
-        </ion-content>
-      </ion-view>
 
+        <ion-content padding="true" class="has-header">
+
+          <div class="spacer" style="display: inline-block; height: 100px;"></div>
+          <a href="#/questions/0" class="button button-positive button-block">Commence New Quiz</a>
+          <button class="button button-stable button-block">Resume Current Quiz</button>
+
+        </ion-content>
+
+      </ion-view>
     </script>
 
     <script id="todos.html" type="text/ng-template">
@@ -55,15 +55,66 @@
       </ion-view> --> **/
 
       <ion-view title="Todos">
-
-        <ion-content ng-controller="TodosCtrl">
-            <ion-list>
-              <ion-item ng-repeat="todo in todos" class="item item-icon-right">
-                <span ng-class="{done: todo.done}">{{todo.title}}</span>
-              </ion-item>
-            </ion-list>
+        <ion-content>
+          <ion-list>
+            <ion-item ng-repeat="todo in todos"  class="item item-icon-right" ui-sref="detail({todo: $index})">
+              <span ng-class="{done: todo.done}">{{todo.title}}</span>
+            </ion-item>
+          </ion-list>
         </ion-content>
+      </ion-view>
 
+      
+
+    </script>
+
+    <script id="todo.html" type="text/ng-template">
+
+      <ion-view title="Todo">
+        <ion-content>
+            <div class="item">
+              <p>{{todo.title}}</p>
+            </div>
+
+            <div class="item item-checkbox">
+              <div>
+                <label class="checkbox">
+                  <input type="checkbox" ng-model="todo.done">
+                </label>
+                Done
+              </div>
+
+            </div>
+        </ion-content>
+      </ion-view>
+
+      
+
+    </script>
+
+    <script id="score.html" type="text/ng-template">
+
+      <ion-view title="Total Score">
+        <ion-content>
+            <div class="card">
+              <div class="list list-inset">
+
+                  <div class="item">
+                    Correct questions:
+                  </div>
+                  <div class="item">
+                    Wrong questions:
+                  </div>
+                  <div class="item">
+                    Total Score: 
+                  </div>
+              </div>
+
+            </div>
+
+            <button href="#/home" class="button button-stable button-block">Continue</button>
+
+        </ion-content>
       </ion-view>
 
       
@@ -111,16 +162,16 @@
 
     <script id="question2.html" type="text/ng-template">
 
-    <ion-view title="Question2">
+    <ion-view title={{countIntoTitle}}>
 
-      <ion-content padding="true" scroll="false"  class="has-header" ng-controller="Question2Ctrl">
+      <ion-content padding="true" scroll="false"  class="has-header">
         <label class="item item-input">
                 <textarea readonly rows="10" >{{item.questionText}}</textarea>
         </label>
 
         <!--
 
-        <ion-item ng-repeat="item in item.answers[0]"
+        <ion-item ng-repeat="item in item.answers"
 
         <button on-tap='push(item)' class="button button-dark button-block" name="button">{{item}}</button>
 
@@ -128,15 +179,18 @@
         </ion-item> -->
 
         <button class="button button-black button-block"
-          ng-repeat="item in item2[1].answers"
+          ng-repeat="item in item.answers"
           ng-click="push($index, item)"
           ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}"
           >{{item.answerText}}</button>
 
           <div class="row">
-            <button class="col col-75 button button-outline button-positive">
+            <button ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
               Next
             </button>
+            <button ng-click="setNavTitle('banana')">
+                  {{questionIndex}}
+                </button>
           </div>
 
       </ion-content>
