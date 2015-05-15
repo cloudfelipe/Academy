@@ -19,14 +19,17 @@
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
+    <script src="js/Quiz.js"></script>
     <script src="js/app.js"></script>
+
+
   </head>
   <body ng-app="starter">
 
     <ion-nav-bar class="bar-positive">
-      <ion-nav-back-button class="button-clear">
+      <!--<ion-nav-back-button class="button-clear">
         <i class="ion-arrow-left-c"></i>
-      </ion-nav-back-button>
+      </ion-nav-back-button> -->
     </ion-nav-bar>
              
     <ion-nav-view></ion-nav-view>
@@ -34,7 +37,7 @@
     <script id="home.html" type="text/ng-template">
       <ion-view title="Home">
 
-        <ion-content padding="true" class="has-header">
+        <ion-content padding="true" can-swipe-back="false" class="has-header">
 
           <div class="spacer" style="display: inline-block; height: 100px;"></div>
           <a href="#/questions/0" class="button button-positive button-block">Commence New Quiz</a>
@@ -95,24 +98,24 @@
     <script id="score.html" type="text/ng-template">
 
       <ion-view title="Total Score">
-        <ion-content>
+        <ion-content can-swipe-back="false">
             <div class="card">
               <div class="list list-inset">
 
                   <div class="item">
-                    Correct questions:
+                    Correct questions: {{correctQuestions}}
                   </div>
                   <div class="item">
-                    Wrong questions:
+                    Wrong questions: {{wrongQuestions}}
                   </div>
                   <div class="item">
-                    Total Score: 
+                    Total Score: {{totalScore}}
                   </div>
               </div>
 
             </div>
 
-            <button href="#/home" class="button button-stable button-block">Continue</button>
+            <button href="#/home" ng-click="finishQuiz()" class="button button-stable button-block">Continue</button>
 
         </ion-content>
       </ion-view>
@@ -164,7 +167,7 @@
 
     <ion-view title={{countIntoTitle}}>
 
-      <ion-content padding="true" scroll="false"  class="has-header">
+      <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
         <label class="item item-input">
                 <textarea readonly rows="10" >{{item.questionText}}</textarea>
         </label>
@@ -185,12 +188,9 @@
           >{{item.answerText}}</button>
 
           <div class="row">
-            <button ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
+            <button  ng-show="showstartCard" ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
               Next
             </button>
-            <button ng-click="setNavTitle('banana')">
-                  {{questionIndex}}
-                </button>
           </div>
 
       </ion-content>

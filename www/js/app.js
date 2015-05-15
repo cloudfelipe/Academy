@@ -38,12 +38,14 @@ angular.module('starter', ['ionic'])
     }
   })
 
-  .state('score', {
+  $stateProvider.state('score', {
     url: '/score',
-    templateUrl: 'score.html'
+    templateUrl: 'score.html',
+    controller: 'ScoreCtrl'
   })
 
   .state('questionIndex', {
+    cache: false,
     url: '/questions/:todo',
     templateUrl: 'question2.html',
     controller: 'Question2Ctrl',
@@ -121,7 +123,56 @@ angular.module('starter', ['ionic'])
 })
 **/
 
-.factory('QuestionsService2', function() {
+.factory('findSamplesFactory', function($http) {
+
+
+  /**
+  var factory = {};
+  factory.getSamples = function() {
+    return $http.get('resorces/questions/quiz1.json');
+  };
+  return factory;
+
+  **/
+
+  alert("Ejecute quizservice1");
+
+  var quiz = new Quiz(1);
+
+  quiz.questions = $http.get('resorces/questions/quiz1.json').success(function(data) {
+    alert("Ejecute quizservice2");
+          return data;
+  });
+
+  return quiz;
+
+})
+
+.factory('quizFactory', ["id", function(id) {
+  return new Quiz(id);
+}])
+
+.factory('QuestionsService2', function($http, findSamplesFactory) {
+
+  alert("ejecute questionService");
+
+
+
+  /**
+  var questions1 =  $http.get('resorces/questions/quiz1.json').success(function(data) {
+          // you can do some processing here
+          alert(data);
+          return data;
+  });  
+  
+
+  findSamplesFactory.getSamples().then(function(data){
+        questions = data.data;
+        alert(data.data);
+  });
+
+  **/
+
   var questions = [
 
   {
@@ -169,9 +220,11 @@ angular.module('starter', ['ionic'])
     "correctAnswer": 3
   }
 
+
   ]
 
   var contador = 1;
+  var correctAnswerss = 0;
 
   return {
     questions: questions,
@@ -181,7 +234,13 @@ angular.module('starter', ['ionic'])
     },
     getConter: function(d){
       return contador++;
-    }
+    },
+    addCorrectAnswer: function(){
+       correctAnswerss++;
+    },
+    getCorrectAnswersCount: function(){
+      return correctAnswerss;
+    },
 
   };
 })
@@ -254,6 +313,8 @@ angular.module('starter', ['ionic'])
 **/
 .controller('Question2Ctrl', function($scope, todo, QuestionsService2, $ionicNavBarDelegate, $state){
 
+  $scope.showstartCard = false;
+
   var currentCount = QuestionsService2.getConter();
   $scope.countIntoTitle = "" + (currentCount) + " of " + QuestionsService2.questions.length;
 
@@ -270,8 +331,6 @@ angular.module('starter', ['ionic'])
 
 
   $scope.push = function(index, element) {
-
-    alert(currentCount);
 
     /**
     var keyName = "";
@@ -297,11 +356,14 @@ angular.module('starter', ['ionic'])
     var cos = $scope.item.correctAnswer;
 
     if (index == cos) {
+      QuestionsService2.addCorrectAnswer();
       element.state = "great";
     }else{
       element.state = "bad";
       $scope.item.answers[cos].state = "great";
     };
+
+    $scope.showstartCard = true;
 
   }
 
@@ -340,7 +402,24 @@ angular.module('starter', ['ionic'])
   };
 })
 
+.controller('ScoreCtrl', function($scope, QuestionsService2, $state, $ionicHistory){
 
+  var correctAnswers = QuestionsService2.getCorrectAnswersCount();
+  var totalQuestions = QuestionsService2.questions.length;
+
+  $scope.correctQuestions = correctAnswers;
+  $scope.wrongQuestions = totalQuestions - correctAnswers;
+
+  $scope.totalScore = "" + correctAnswers + "/" + totalQuestions;
+
+  $scope.finishQuiz = function(){
+    $ionicHistory.goBack(-100);
+    $ionicHistory.clearCache();
+  }
+
+
+
+})
 
 
 
