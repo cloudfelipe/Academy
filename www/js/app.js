@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic'])
+angular.module('starter', ['ionic', 'ngResource'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -11,7 +11,8 @@ angular.module('starter', ['ionic'])
 
   $stateProvider.state('home', {
     url: '/',
-    templateUrl: 'home.html'
+    templateUrl: 'home.html',
+    controller: 'HomeCtrl'
   })
   /**
   $stateProvider
@@ -122,6 +123,15 @@ angular.module('starter', ['ionic'])
   }
 })
 **/
+
+.factory("dataResource", function ($resource) {
+    return $resource('resorces/questions/quiz1.json', //la url donde queremos consumir
+        {}, //aquí podemos pasar variables que queramos pasar a la consulta
+        //a la función get le decimos el método, y, si es un array lo que devuelve
+        //ponemos isArray en true
+        { get: { method: "GET", isArray: true }
+    })
+})
 
 .factory('findSamplesFactory', function($http) {
 
@@ -263,6 +273,11 @@ angular.module('starter', ['ionic'])
 
 //Def controllers
 
+.controller('HomeCtrl', function($scope, dataResource) {
+  var datos = dataResource.get();
+  alert(datos);
+})
+
 .controller('TodosCtrl', function($scope, TodosService) {
   $scope.todos = TodosService.todos
 })
@@ -311,7 +326,9 @@ angular.module('starter', ['ionic'])
 /**
 * $ionicNavBarDelegate: NavigationBar's delegate, to change the navigation title 
 **/
-.controller('Question2Ctrl', function($scope, todo, QuestionsService2, $ionicNavBarDelegate, $state){
+.controller('Question2Ctrl', function($scope, todo, QuestionsService2, $ionicNavBarDelegate, $state, $ionicView){
+
+
 
   $scope.showstartCard = false;
 
