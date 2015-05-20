@@ -36,7 +36,7 @@
              
     <ion-nav-view></ion-nav-view>
 
-    <script id="home.html" type="text/ng-template">
+    <script id="quiz.html" type="text/ng-template">
       <ion-view title="Home">
 
         <ion-content padding="true" can-swipe-back="false" class="has-header">
@@ -49,6 +49,38 @@
 
       </ion-view>
     </script>
+
+    <script id="quizzes.html" type="text/ng-template">
+
+      <ion-view title={{quizzes.length}}>
+
+      <ion-content>
+        <ion-list>
+          <ion-item ng-repeat="quiz in quizzes"  class="item item-icon-right">
+          <a href="#/quizzes/quiz0" class="button button-positive button-block">Quiz: {{quiz}}</a>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+      </ion-view>
+
+    </script>
+
+    <!--<script id="quiz.html" type="text/ng-template">
+
+      <ion-view title={{questions.lenght}}>
+
+      <ion-content>
+        <ion-list>
+          <ion-item ng-repeat="question in questions"  class="item item-icon-right">
+            <span ng-class="{done: todo.done}">{{question.questionText}}</span>
+          </ion-item>
+        </ion-list>
+      </ion-content>
+
+      </ion-view>
+
+    </script> -->
 
     <script id="todos.html" type="text/ng-template">
       <!-- The title of the ion-view will be shown on the navbar -->
