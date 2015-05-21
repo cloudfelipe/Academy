@@ -36,14 +36,14 @@
              
     <ion-nav-view></ion-nav-view>
 
-    <script id="quiz.html" type="text/ng-template">
-      <ion-view title="Home">
+    <script id="quizHome.html" type="text/ng-template">
+      <ion-view title="Quiz No. {{title}}" >
 
         <ion-content padding="true" can-swipe-back="false" class="has-header">
 
           <div class="spacer" style="display: inline-block; height: 100px;"></div>
-          <a href="#/questions/0" class="button button-positive button-block">Commence New Quiz</a>
-          <button class="button button-stable button-block">Resume Current Quiz</button>
+          <a href="#/quizzes/quiz{{quizId}}/question0" class="button button-positive button-block">Commence New Quiz</a>
+          <button ng-show="showResumeButton" class="button button-stable button-block">Resume Current Quiz</button>
 
         </ion-content>
 
@@ -63,6 +63,33 @@
       </ion-content>
 
       </ion-view>
+
+    </script>
+
+    <script id="quiz.html" type="text/ng-template">
+
+    <ion-view title={{countIntoTitle}}>
+
+      <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
+        <label class="item item-input">
+                <textarea readonly rows="10" >{{item.questionText}}</textarea>
+        </label>
+
+        <button class="button button-black button-block"
+          ng-repeat="item in item.answers"
+          ng-click="selectAnswer($index, item)"
+          ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}"
+          >{{item.answerText}}</button>
+
+          <div class="row">
+            <button  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
+              Next
+            </button>
+          </div>
+
+      </ion-content>
+
+    </ion-view>
 
     </script>
 

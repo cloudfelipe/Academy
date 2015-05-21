@@ -1,12 +1,17 @@
-function Quiz(id) {
+function Quiz(idQ) {
 
-  this.id = id;
+  this.id = idQ;
   this.correctAnswers = 0;
   this.wrongAnswers = 0;
+  this.counter = 1;
   this.questions = [];
-  this.currentQuestions = 0;
+  this.currentQuestion = 0;
 
   this.launch = function() {
     alert("Se creo un quiz");
+  }
+
+  this.getCounter = function(){
+  	return this.counter ++;
   }
 }
