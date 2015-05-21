@@ -53,6 +53,12 @@ angular.module('starter', ['ionic', 'ngResource'])
     }
   })
 
+  .state('quizUI', {
+    url: '/quizUI',
+    templateUrl: 'quizUI.html',
+    controller: 'QuizUICtrl'
+  })
+
 })
 
 
@@ -237,6 +243,67 @@ angular.module('starter', ['ionic', 'ngResource'])
   $scope.finishQuiz = function(){
     $ionicHistory.goBack(-100);
     $ionicHistory.clearCache();
+  }
+
+})
+
+
+//Testing
+
+.controller('QuizUICtrl', function($scope) {
+
+  var currentCount = 2;
+
+  $scope.showNextbutton = false;
+
+  $scope.countIntoTitle = "" + (currentCount) + " of " + 12;
+
+  $scope.questionIndex = currentCount;
+
+  $scope.item = {
+    "questionText": "A woman with essential hypertension presents at 6 weeks gestation. Which of the following anti-hypertensive medications would NOT be appropriate for her to take in pregnancy?",
+    "answers": [
+      {"keyName": "A", "answerText":"ACE inhibitor, eg, Enalapril", "state":"normal"},
+      {"keyName": "B", "answerText":"Methyldopa", "state":"normal"},
+      {"keyName": "C", "answerText":"Beta-blocker", "state":"normal"},
+      {"keyName": "D", "answerText":"Calcium channel blocker, eg, Nifedipine", "state":"normal"},
+      {"keyName": "E", "answerText":"All of the above would be appropriate for use in pregnancy", "state":"normal"},
+    ],
+    "correctAnswer": 0
+  };
+
+  $scope.texto = "All of the above would be appropriate for use in pregnancy";
+
+  //Methods
+  $scope.selectAnswer = function(index, element) {
+
+    element.state = "bad";
+
+    // var correctAnswer = question.correctAnswer;
+    // myQuiz.currentQuestion++;
+
+    // if (index == correctAnswer) {
+    //   myQuiz.correctAnswers++;
+    //   element.state = "great";
+    // }else{
+    //   element.state = "bad";
+    //   myQuiz.wrongAnswers++;
+    //   question.answers[correctAnswer].state = "great";
+    // };
+
+    // $scope.showNextbutton = true;
+
+  }
+
+  $scope.nextQuestion = function(questionIndex){
+
+    // if (myQuiz.questions.length < questionIndex +1) {
+    //   $state.go('score');
+    // }else{
+    //   $state.go('quizAtIndex', {idQuiz: myQuiz.id, idQuestion: questionIndex});
+
+    // }
+
   }
 
 })

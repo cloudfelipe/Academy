@@ -28,7 +28,7 @@
   </head>
   <body ng-app="starter">
 
-    <ion-nav-bar class="bar-positive">
+    <ion-nav-bar class="bar-transparent">
       <!--<ion-nav-back-button class="button-clear">
         <i class="ion-arrow-left-c"></i>
       </ion-nav-back-button> -->
@@ -79,6 +79,34 @@
           ng-repeat="item in item.answers"
           ng-click="selectAnswer($index, item)"
           ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}"
+          >{{item.answerText}}</button>
+
+          <div class="row">
+            <button  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
+              Next
+            </button>
+          </div>
+
+      </ion-content>
+
+    </ion-view>
+
+    </script>
+
+
+
+    <script id="quizUI.html" type="text/ng-template">
+
+    <ion-view title={{countIntoTitle}}>
+
+      <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
+        
+        <label class="myLabel">{{item.questionText}}</label>
+
+        <button class="button questionButton button-block"
+          ng-repeat="item in item.answers"
+          ng-click="selectAnswer($index, item)"
+          ng-class="{'button button-block questionButton success': item.state == 'great' , 'button button-block questionButton fail': item.state == 'bad'}"
           >{{item.answerText}}</button>
 
           <div class="row">
