@@ -15,10 +15,11 @@
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
-    <script src="lib/ionic/js/angular/angular-resource.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+    <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/Quiz.js"></script>
@@ -29,6 +30,7 @@
   <body ng-app="starter">
 
     <ion-nav-bar class="bar-transparent">
+
       <!--<ion-nav-back-button class="button-clear">
         <i class="ion-arrow-left-c"></i>
       </ion-nav-back-button> -->
@@ -37,13 +39,15 @@
     <ion-nav-view></ion-nav-view>
 
     <script id="quizHome.html" type="text/ng-template">
-      <ion-view title="Quiz No. {{title}}" >
+      <ion-view title="{{title}}" >
 
         <ion-content padding="true" can-swipe-back="false" class="has-header">
 
           <div class="spacer" style="display: inline-block; height: 100px;"></div>
-          <a href="#/quizzes/quiz{{quizId}}/question0" class="button button-positive button-block">Commence New Quiz</a>
-          <button ng-show="showResumeButton" class="button button-stable button-block">Resume Current Quiz</button>
+          <button ng-click="commenceQuiz()" class="button button-positive button-block">
+            Commence New Quiz
+          </button>
+          <button ng-show="showResumeButton" ng-click="resumeQuiz()" class="button button-stable button-block">Resume Current Quiz</button>
 
         </ion-content>
 
@@ -57,7 +61,7 @@
       <ion-content>
         <ion-list>
           <ion-item ng-repeat="quiz in quizzes"  class="item item-icon-right">
-          <a href="#/quizzes/quiz0" class="button button-positive button-block">Quiz: {{quiz}}</a>
+          <a href="#/quizzes/quiz" class="button button-positive button-block">Quiz: {{quiz}}</a>
           </ion-item>
         </ion-list>
       </ion-content>
@@ -70,6 +74,17 @@
 
     <ion-view title={{countIntoTitle}}>
 
+      <ion-nav-buttons side="primary">
+        <button class="button"  ng-click="confirmQuit()">
+          Quit
+        </button>
+      </ion-nav-buttons>
+      <ion-nav-buttons side="secondary">
+        <button class="button"  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})">
+          Next
+        </button>
+      </ion-nav-buttons>
+
       <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
         <label class="item item-input">
                 <textarea readonly rows="10" >{{item.questionText}}</textarea>
@@ -80,12 +95,6 @@
           ng-click="selectAnswer($index, item)"
           ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}"
           >{{item.answerText}}</button>
-
-          <div class="row">
-            <button  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
-              Next
-            </button>
-          </div>
 
       </ion-content>
 
