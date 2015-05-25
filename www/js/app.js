@@ -68,7 +68,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
 
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, localstorage) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -78,6 +78,10 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+
+    //Create local file in the first ejecution
+    //localstorage.setObject('myQuiz', '');
+
   });
 })
 
@@ -99,11 +103,15 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     get: function(key, defaultValue) {
       return $window.localStorage[key] || defaultValue;
     },
+    removeItem: function(key){
+      return $window.localStorage.removeItem(key);
+      //return localStorage.clear();
+    },
     setObject: function(key, value) {
       $window.localStorage[key] = JSON.stringify(value);
     },
     getObject: function(key) {
-      return JSON.parse($window.localStorage[key] || '{}');
+      return JSON.parse($window.localStorage[key] || null);
     }
   }
 }])
@@ -178,7 +186,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
       var newQuestions = [];
       var items = ["a","e","i","o","u"];
 
-      while(newQuestions.length < 3){
+      while(newQuestions.length < 5){
         var randomElement = Math.floor(Math.random()*questions.length);
 
         if(arrayIndexes.indexOf(randomElement)==-1){
@@ -215,7 +223,8 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
       return localstorage.setObject('myQuiz', myQuiz);
     },
     cleanQuizState: function(){
-      return localstorage.setObject('myQuiz', "");
+      //return localstorage.setObject('myQuiz', "");
+      return localstorage.removeItem('myQuiz');
     }
 
 
@@ -235,16 +244,19 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 .controller('QuizHomeCtrl', function($scope, $state, quizService, localstorage) {
 
   //var myq = newQuiz;
+  //alert("2da");
 
   //$scope.quizId = myq.id;
   $scope.title = "Home Screen"; //parseInt(myq.id) +  1;
+  //$scope.showResumeButton = false;
   //$scope.questions = myq.questions;
 
 
   var currentQuiz = localstorage.getObject('myQuiz');
   console.log(currentQuiz);
 
-  if(currentQuiz) {
+  //Exist previous quiz
+  if(!angular.equals(currentQuiz, null)) {
     $scope.newQuizBtnDisabled = true;
     $scope.showResumeButton = true;
   }
