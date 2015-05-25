@@ -5,9 +5,12 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
-  $urlRouterProvider.otherwise('/quizzes')
+  //Disable swipe to go back
+  $ionicConfigProvider.views.swipeBackEnabled(false);
+
+  $urlRouterProvider.otherwise('/quizzes/quiz')
 
   $stateProvider
 
@@ -19,6 +22,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
   .state('quiz', {
     url: '/quizzes/quiz',
+    cache: false,
     templateUrl: 'quizHome.html',
     controller: 'QuizHomeCtrl',
     // resolve: {
@@ -241,7 +245,8 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
   console.log(currentQuiz);
 
   if(currentQuiz) {
-   $scope.showResumeButton = true;
+    $scope.newQuizBtnDisabled = true;
+    $scope.showResumeButton = true;
   }
 
   $scope.commenceQuiz = function(){
@@ -263,7 +268,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
   
 })
 
-.controller('QuizCtrl', function($scope, quizService, question, myQuiz, $state, $cordovaDialogs, localstorage) {
+.controller('QuizCtrl', function($scope, quizService, question, myQuiz, $state, $cordovaDialogs, localstorage, $ionicHistory) {
 
   var post = localstorage.getObject('myQuiz');
   console.log(post);
@@ -285,6 +290,9 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
   $scope.selectAnswer = function(index, element) {
 
     var correctAnswer = question.correctAnswer;
+
+    if ($scope.showNextbutton) {return};
+
     //myQuiz.currentQuestion++;
 
     if (index == correctAnswer) {
@@ -295,6 +303,8 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
       myQuiz.wrongAnswers++;
       question.answers[correctAnswer].state = "great";
     };
+
+    //$scope.questionBtnDisabled = true;
 
     //Save the new quiz state
     quizService.saveQuizState();
@@ -316,16 +326,19 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
   }
 
   $scope.confirmQuit = function(){
-    $cordovaDialogs.confirm('Are you sure?', 'Quit Quizz', ['button 1','button 2'])
+    $cordovaDialogs.confirm('Are you sure?', 'Quit Quizz', ['Yes','No'])
       .then(function(buttonIndex) {
         // no button = 0, 'OK' = 1, 'Cancel' = 2
 
         if (buttonIndex == 1) {
           //Clean current quiz locally
-          //quizService.cleanQuizState();
+          quizService.cleanQuizState();
+
+          //To go to first view
+          $ionicHistory.goBack(-100);
+          $ionicHistory.clearCache();
         };
 
-        alert(buttonIndex);
       }
     );
   }
@@ -445,8 +458,8 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     }
   }
 
-  alert(arrayIndexes);
-  alert(newQuestions);
+  //alert(arrayIndexes);
+  //alert(newQuestions);
 
 
   //Methods

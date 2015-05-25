@@ -45,16 +45,15 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
 .questionButton {
-	box-shadow: 7px 5px 0px 0px #b3babf;
+	/*box-shadow: 7px 5px 0px 0px #b3babf;*/
 	
 	/*background: #fcfcfd url(/img/buttonIcon.png) no-repeat scroll 10px center;*/
 
 	background-size: 10%;
 
-	border:1px solid #ebebeb;
-
+	/*border:1px solid #ebebeb;
 	border-top-left-radius:42px;
-	border-bottom-left-radius:42px;
+	border-bottom-left-radius:42px;*/
 
 	
 	text-align: left;

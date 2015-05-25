@@ -44,10 +44,10 @@
         <ion-content padding="true" can-swipe-back="false" class="has-header">
 
           <div class="spacer" style="display: inline-block; height: 100px;"></div>
-          <button ng-click="commenceQuiz()" class="button button-positive button-block">
+          <button ng-click="commenceQuiz()" class="button button-positive button-block" ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}" ng-disabled="newQuizBtnDisabled">
             Commence New Quiz
           </button>
-          <button ng-show="showResumeButton" ng-click="resumeQuiz()" class="button button-stable button-block">Resume Current Quiz</button>
+          <button ng-show="showResumeButton" ng-click="resumeQuiz()" class="button button-calm button-block">Resume Current Quiz</button>
 
         </ion-content>
 
@@ -86,14 +86,14 @@
       </ion-nav-buttons>
 
       <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
-        <label class="item item-input">
-                <textarea readonly rows="10" >{{item.questionText}}</textarea>
-        </label>
 
-        <button class="button button-black button-block"
+        <label class="myLabel">{{item.questionText}}</label>
+
+        <button class="button questionButton button-block"
           ng-repeat="item in item.answers"
+          ng-disabled="questionBtnDisabled"
           ng-click="selectAnswer($index, item)"
-          ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}"
+          ng-class="{'button button-block questionButton success': item.state == 'great' , 'button button-block questionButton fail': item.state == 'bad'}"
           >{{item.answerText}}</button>
 
       </ion-content>
