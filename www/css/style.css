@@ -1,10 +1,32 @@
 /* Empty. Add your own CSS if you like */
+
+/*@font-face {
+   font-family: HelveticaNeueLTS;
+   src: url(../resources/fonts/HelveticaNeueLTStd-Bd.otf);
+   font-weight: bold;
+}*/
+
+@font-face {
+   font-family: HelveticaNeueLTS;
+   src: url(../resources/fonts/HelveticaNeueLTStd-Lt.otf);
+   font-weight: lighter;
+}
+
+@font-face {
+   font-family: HelveticaNeueLTS;
+   src: url(../resources/fonts/HelveticaNeueLTStd-Md.otf);
+   font-weight: bold;
+}
+
 .done {
   text-decoration: line-through;
 }
 
 .pane {
-  background-color: #dae0e5 !important
+  /*background-color: #dae0e5 !important; Gris*/
+
+  /*Blue*/
+  background-color: #002c64 !important
 }
 
 .bar.bar-transparent {
@@ -16,7 +38,12 @@
 .bar .title {
   color: #000000;
 
+  /*Desing two*/
+  color: #ffffff;
+
 }
+
+
 
 .btnExample 
 {
@@ -37,11 +64,84 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 }
 
+
+
+.item-image-left .image-left-container{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	-moz-align-items: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	height: 100%;
+	left: 14px; 
+
+
+}
+
+.item-image-left {
+	padding-left: 64px;
+
+}
+
+.image-left{
+	width:60%; /* you can use % */
+    height: auto;
+}
+
 .myLabel{
-	font-size:15px;
+	font-size:17px;
 	display: table-cell;
 	vertical-align: middle;
 	text-align: center;
+
+	/*Desing two*/
+	color: #ffffff;
+
+	font-family: HelveticaNeueLTS;
+
+
+}
+
+.barBtn {
+
+	background-color:#ffffff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #dcdcdc;
+	display:inline-block;
+	color:#002c64;
+	font-family:HelveticaNeueLTS;
+	font-size:15px;
+	padding:2px 15px;
+	text-decoration:none;
+	
+}
+
+
+
+.question-text  { 
+	color: black;
+	font-family: HelveticaNeueLTS;
+	font-weight: bold;
+	font-size: 14px;
+	line-height: 10px;
+}
+
+.fail-color{
+	color: #d6292c;
+}
+
+.success-color{
+	color: #009900;
 }
 
 .questionButton {

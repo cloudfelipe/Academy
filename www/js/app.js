@@ -10,7 +10,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
   //Disable swipe to go back
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
-  $urlRouterProvider.otherwise('/quizzes/quiz')
+  $urlRouterProvider.otherwise('/quizUI')
 
   $stateProvider
 
@@ -35,6 +35,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
   .state('quizAtIndex', {
     url: '/quizzes/quiz:idQuiz/question:idQuestion',
     templateUrl: 'quiz.html',
+    cache: false,
     controller: 'QuizCtrl',
     resolve: {
         question: function($stateParams, quizService) {
@@ -48,6 +49,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
   .state('score', {
     url: '/score',
+    cache: false,
     templateUrl: 'score.html',
     controller: 'ScoreCtrl',
     resolve: {
@@ -59,7 +61,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
   .state('quizUI', {
     url: '/quizUI',
-    templateUrl: 'quizUI.html',
+    templateUrl: 'quizUI2.html',
     controller: 'QuizUICtrl'
   })
 
@@ -68,16 +70,23 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
 
 
-.run(function($ionicPlatform, localstorage) {
+.run(function($ionicPlatform, $cordovaStatusbar, localstorage) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if(window.StatusBar) {
-      StatusBar.styleDefault();
-    }
+    // if(window.StatusBar) {
+    //   StatusBar.styleDefault();
+    // }
+
+    $cordovaStatusbar.styleHex('#FFFFFF') //red
+
+    //$cordovaStatusbar.overlaysWebView(true);
+    //$cordovaStatusBar.style(1); //Light
+
+
 
     //Create local file in the first ejecution
     //localstorage.setObject('myQuiz', '');
@@ -88,7 +97,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 //Def factories
 
 .factory("quizzesProvider", function ($resource) {
-  return $resource('resorces/questions/quiz1.json', {}, 
+  return $resource('resources/questions/quiz1.json', {}, 
     { 
       get: { method: "GET", isArray: true },
 
@@ -225,7 +234,14 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     cleanQuizState: function(){
       //return localstorage.setObject('myQuiz', "");
       return localstorage.removeItem('myQuiz');
+    },
+    restart: function(){
+      questions = quizzesProvider.get();
+      quizzesCount = 0;
+      myQuiz = null;
+      return
     }
+
 
 
   };
@@ -332,7 +348,6 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
       $state.go('score');
     }else{
       $state.go('quizAtIndex', {idQuiz: myQuiz.id, idQuestion: questionIndex});
-
     }
 
   }
@@ -341,14 +356,15 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     $cordovaDialogs.confirm('Are you sure?', 'Quit Quizz', ['Yes','No'])
       .then(function(buttonIndex) {
         // no button = 0, 'OK' = 1, 'Cancel' = 2
-
         if (buttonIndex == 1) {
           //Clean current quiz locally
           quizService.cleanQuizState();
+          quizService.restart();
 
           //To go to first view
           $ionicHistory.goBack(-100);
           $ionicHistory.clearCache();
+
         };
 
       }
@@ -359,9 +375,6 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
 .controller('ScoreCtrl', function($scope, quizService, myQuiz, $state, $ionicHistory){
 
-  //Clean current quiz locally
-  quizService.cleanQuizState();
-
   var correctAnswers = myQuiz.correctAnswers;
   var totalQuestions = myQuiz.questions.length;
 
@@ -370,9 +383,15 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
   $scope.totalScore = "" + correctAnswers + "/" + totalQuestions;
 
+
+  //Clean current quiz locally
+  quizService.cleanQuizState();
+  quizService.restart();
+
   $scope.finishQuiz = function(){
     $ionicHistory.goBack(-100);
     $ionicHistory.clearCache();
+    
   }
 
 })

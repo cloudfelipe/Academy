@@ -1,0 +1,313 @@
+[
+{
+    "questionText": "A woman with essential hypertension presents at 6 weeks gestation. Which of the following anti-hypertensive medications would NOT be appropriate for her to take in pregnancy?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "ACE inhibitor, eg, Enalapril",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "Methyldopa",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "Beta-blocker",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "Calcium channel blocker, eg, Nifedipine",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "All of the above would be appropriate for use in pregnancy",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 0
+  },
+  {
+    "questionText": "What are potential complications of ACE inhibitor use in pregnancy?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "Cardiovascular and neurological malformations",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "Oligohydramnios, renal failure and fetal hypotension",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "Decreased skull ossification, hypocalvaria and renal tubular dysgenesis",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "Fetal death",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "All of the above",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 4
+  },
+  {
+    "questionText": "Side effects of Methyldopa include which of the following?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "Depression",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "Postural hypotension",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "Sedation",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "Liver function test abnormalities",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "All of the above",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 4
+  },
+  {
+    "questionText": "At what mean arterial pressure does a loss of cerebral autoregulation occur?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "130",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "140",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "150",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "160",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "170",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 2
+  },
+  {
+    "questionText": "Which of the following medications NOT are suitable for use in a hypertensive crisis?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "IV Labetalol",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "IV Hydralazine",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "IV Diazoxide",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "Sublingual Nifedipine",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "Oral Nifedipine",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "questionText": "1g of calcium daily during pregnancy reduces the risk of pre-eclampsia by how much?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "0,1",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "0,2",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "0,3",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "0,4",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "≥50%",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 4
+  },
+  {
+    "questionText": "For a woman who experiences pre-eclampsia in her first pregnancy, what is her risk of recurrence in her next pregnancy?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "0,01",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "0,02",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "0,05",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "0,1",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "0,15",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 4
+  },
+  {
+    "questionText": "Which of the following is NOT a risk factor for pre-eclampsia?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "Maternal history of pre-eclampsia",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "Smoking",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "Obesity",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "Essential hypertension",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "Multiple gestation",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 1
+  },
+  {
+    "questionText": "Which of the following are more likely to develop in later life in women who experience pre-eclampsia in pregnancy?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "Ischaemic heart disease",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "Hypertension",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "Cerebrovascular disease",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "All of the above",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "None of the above",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 3
+  },
+  {
+    "questionText": "What did the Low-dose Aspirin Study in Pregnancy (CLASP) show?",
+    "answers": [
+      {
+        "keyName": "A",
+        "answerText": "Aspirin reduces the risk of early onset pre-eclampsia requiring delivery before 32 weeks gestation",
+        "state": "normal"
+      },
+      {
+        "keyName": "B",
+        "answerText": "Aspirin reduces the risk of early onset pre-eclampsia requiring delivery before 34 weeks gestation",
+        "state": "normal"
+      },
+      {
+        "keyName": "C",
+        "answerText": "Aspirin reduces the risk of early onset pre-eclampsia requiring delivery before 37 weeks gestation",
+        "state": "normal"
+      },
+      {
+        "keyName": "D",
+        "answerText": "Aspirin reduces the risk of late onset pre-eclampsia",
+        "state": "normal"
+      },
+      {
+        "keyName": "E",
+        "answerText": "Aspirin reduces the risk of late onset pre-eclampsia requiring delivery before 37 weeks gestation",
+        "state": "normal"
+      }
+    ],
+    "correctAnswer": 0
+  }
+
+]
