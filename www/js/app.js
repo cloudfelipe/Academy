@@ -77,11 +77,12 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    // if(window.StatusBar) {
-    //   StatusBar.styleDefault();
-    // }
+    if(window.StatusBar) {
+      //StatusBar.styleDefault();
+      $cordovaStatusbar.styleHex('#FFFFFF') //red
+    }
 
-    $cordovaStatusbar.styleHex('#FFFFFF') //red
+    
 
     //$cordovaStatusbar.overlaysWebView(true);
     //$cordovaStatusBar.style(1); //Light

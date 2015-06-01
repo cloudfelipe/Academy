@@ -76,26 +76,48 @@
     <ion-view title={{countIntoTitle}}>
 
       <ion-nav-buttons side="primary">
-        <button class="button"  ng-click="confirmQuit()">
-          Quit
+        <button class="barBtn"  ng-click="confirmQuit()">
+          QUIT
         </button>
       </ion-nav-buttons>
       <ion-nav-buttons side="secondary">
-        <button class="button"  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})">
-          Next
+        <button class="barBtn"  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})">
+          NEXT
         </button>
       </ion-nav-buttons>
 
-      <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
+      <ion-content padding="false" scroll="true" can-swipe-back="false" class="has-header">
 
-        <label class="myLabel">{{item.questionText}}</label>
+        <br>
 
-        <button class="button questionButton button-block"
+        <label class="myLabel">{{item.questionText}} </label>
+
+        <br>
+        <br>
+
+        <ion-list>
+          <ion-item  class="item  item-image-left item-text-wrap intro-list-item"
+            ng-repeat="item in item.answers" 
+            ng-click="selectAnswer($index, item)"
+            ng-disabled="questionBtnDisabled"
+            >
+
+            <i class="image-left-container">
+              <img ng-class="{'image-left question-img{{$index}}': item.state == 'normal', 'image-left success-img': item.state == 'great', 'image-left fail-img': item.state == 'bad'}" >
+            </i>
+
+            <label ng-class="{'question-text success-color': item.state == 'great','image-left fail-color': item.state == 'bad'}">{{item.answerText}}</label>
+
+          </ion-item>
+        </ion-list>
+
+
+        <!--<button class="button questionButton button-block"
           ng-repeat="item in item.answers"
           ng-disabled="questionBtnDisabled"
           ng-click="selectAnswer($index, item)"
           ng-class="{'button button-block questionButton success': item.state == 'great' , 'button button-block questionButton fail': item.state == 'bad'}"
-          >{{item.answerText}}</button>
+          >{{item.answerText}}</button> -->
 
       </ion-content>
 
@@ -103,33 +125,6 @@
 
     </script>
 
-
-
-    <script id="quizUI.html" type="text/ng-template">
-
-    <ion-view title={{countIntoTitle}}>
-
-      <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
-        
-        <label class="myLabel">{{item.questionText}}</label>
-
-        <button class="button questionButton button-block"
-          ng-repeat="item in item.answers"
-          ng-click="selectAnswer($index, item)"
-          ng-class="{'button button-block questionButton success': item.state == 'great' , 'button button-block questionButton fail': item.state == 'bad'}"
-          >{{item.answerText}}</button>
-
-          <div class="row">
-            <button  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
-              Next
-            </button>
-          </div>
-
-      </ion-content>
-
-    </ion-view>
-
-    </script>
 
     <script id="quizUI2.html" type="text/ng-template">
 
@@ -224,6 +219,35 @@
       </div>
 
 
+
+      </ion-content>
+
+    </ion-view>
+
+    </script>
+
+
+
+
+    <script id="quizUI.html" type="text/ng-template">
+
+    <ion-view title={{countIntoTitle}}>
+
+      <ion-content padding="true" scroll="true" can-swipe-back="false" class="has-header">
+        
+        <label class="myLabel">{{item.questionText}}</label>
+
+        <button class="button questionButton button-block"
+          ng-repeat="item in item.answers"
+          ng-click="selectAnswer($index, item)"
+          ng-class="{'button button-block questionButton success': item.state == 'great' , 'button button-block questionButton fail': item.state == 'bad'}"
+          >{{item.answerText}}</button>
+
+          <div class="row">
+            <button  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})" class="col col-75 button button-outline button-positive">
+              Next
+            </button>
+          </div>
 
       </ion-content>
 

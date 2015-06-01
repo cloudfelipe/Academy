@@ -94,6 +94,31 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 .image-left{
 	width:60%; /* you can use % */
     height: auto;
+    
+}
+
+.success-img{
+	content:url(../img/questionSuccess.png);
+}
+
+.fail-img{
+	content:url(../img/questionFail.png);
+}
+
+.question-img0{
+	content:url(../img/questionLetterA.png);
+}
+.question-img1{
+	content:url(../img/questionLetterB.png);
+}
+.question-img2{
+	content:url(../img/questionLetterC.png);
+}
+.question-img3{
+	content:url(../img/questionLetterD.png);
+}
+.question-img4{
+	content:url(../img/questionLetterE.png);
 }
 
 .myLabel{
@@ -142,6 +167,7 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 
 .success-color{
 	color: #009900;
+
 }
 
 .questionButton {
