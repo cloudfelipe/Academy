@@ -21,6 +21,10 @@
     <script src="cordova.js"></script>
     <script src="lib/ngCordova/dist/ng-cordova.js"></script>
 
+    <!-- angular-svg-round-progress / Circular Progress bar -->
+    <script src="lib/angular-svg-round-progressbar/build/roundProgress.js"></script> 
+    <!--<script src="http://crisbeto.github.io/angular-svg-round-progressbar/roundProgress.min.js"></script> -->
+
     <!-- your app's js -->
     <script src="js/Quiz.js"></script>
     <script src="js/app.js"></script>
@@ -40,15 +44,26 @@
     <ion-nav-view></ion-nav-view>
 
     <script id="quizHome.html" type="text/ng-template">
-      <ion-view title="{{title}}" >
+
+      <ion-view  title="" class="background" >
+
 
         <ion-content padding="true" can-swipe-back="false" class="has-header">
 
-          <div class="spacer" style="display: inline-block; height: 100px;"></div>
-          <button ng-click="commenceQuiz()" class="button barBtn icon-left ion-ios-plus-outline button-block" ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}" ng-disabled="newQuizBtnDisabled">
+
+          <div class="spacer" style="display: inline-block; height: 30px;"></div>
+
+          <div align="center">
+            <img src="img/academiaLogo.png" style="width:70%; height: auto;">
+          </div>
+
+          <div class="spacer" style="display: inline-block; height: 30px;"></div>
+
+          
+          <button ng-click="commenceQuiz()" class="button barBtn home-btn button-block" ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}" ng-disabled="newQuizBtnDisabled">
             NEW QUIZ
           </button>
-          <button ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn icon-left ion-ios-arrow-thin-down button-block">CURRENT QUIZ</button>
+          <button ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn home-btn button-block">CURRENT QUIZ</button>
 
         </ion-content>
 
@@ -57,7 +72,7 @@
 
     <script id="quizzes.html" type="text/ng-template">
 
-      <ion-view title={{quizzes.length}}>
+      <ion-view title={{quizzes.length}} class="background">
 
       <ion-content>
         <ion-list>
@@ -73,10 +88,10 @@
 
     <script id="quiz.html" type="text/ng-template">
 
-    <ion-view title={{countIntoTitle}}>
+    <ion-view title={{countIntoTitle}} class="background">
 
       <ion-nav-buttons side="primary">
-        <button class="barBtn"  ng-click="confirmQuit()">
+        <button class="barBtn" ng-click="confirmQuit()">
           QUIT
         </button>
       </ion-nav-buttons>
@@ -88,18 +103,18 @@
 
       <ion-content padding="false" scroll="true" can-swipe-back="false" class="has-header">
 
-        <br>
+        <div class="spacer" style="display: inline-block; height: 10px;"></div>
 
-        <label class="myLabel">{{item.questionText}} </label>
+        <label  style="padding: 3%;" class="myLabel">{{item.questionText}} </label>
 
-        <br>
-        <br>
+        <div class="spacer" style="display: inline-block; height: 20px;"></div>
 
-        <ion-list>
+        <ion-list >
           <ion-item  class="item  item-image-left item-text-wrap intro-list-item"
             ng-repeat="item in item.answers" 
             ng-click="selectAnswer($index, item)"
             ng-disabled="questionBtnDisabled"
+            style="background-color: white !important;"
             >
 
             <i class="image-left-container">
@@ -122,6 +137,208 @@
       </ion-content>
 
     </ion-view>
+
+    </script>
+
+    <script id="score.html" type="text/ng-template">
+
+      <ion-view title="SCORE" class="background white-background">
+
+        <ion-content can-swipe-back="false" >
+
+          <br>
+
+          <div class="row" align="center">
+
+            <div class="col">
+              <div class="score-text">Correct Answers</div>
+              <div class="progress-wrapper" ng-style="{'font-size': getFontSize()}">
+                <div class="progress" style="line-height: 2.5em;">{{correctQuestions}}</div>
+                  <div
+                      round-progress
+                      max=totalQuestions
+                      current=correctQuestions
+                      color="#006d4f"
+                      bgcolor="{{ bgColor }}"
+                      radius="{{radius}}"
+                      semi="isSemi"
+                      rounded="rounded"
+                      stroke="{{ stroke }}"
+                      clockwise="clockwise"
+                      iterations="{{ iterations }}"
+                      animation="{{ currentAnimation }}">
+                  </div>
+              </div>
+            </div>
+
+            <div class="col">
+              <div class="score-text">Incorrect Answers</div>
+              <div class="progress-wrapper" ng-style="{'font-size': getFontSize()}">
+                <div class="progress" style="line-height: 2.5em;">{{wrongQuestions}}</div>
+                  <div
+                      round-progress
+                      max=totalQuestions
+                      current=wrongQuestions
+                      color="#b8292f"
+                      bgcolor="{{ bgColor }}"
+                      radius="{{radius}}"
+                      semi="isSemi"
+                      rounded="rounded"
+                      stroke="{{ stroke }}"
+                      clockwise="clockwise"
+                      iterations="{{ iterations }}"
+                      animation="{{ currentAnimation }}">
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" align="center">
+            <div class="col">
+              <div class="score-text">Results</div>
+              <div class="progress-wrapper">
+                <div class="progress" style="line-height: 3.2em;">{{ totalScore }}</div>
+                <div
+                    round-progress
+                    max=totalQuestions
+                    current=correctQuestions
+                    color="#002c64"
+                    bgcolor="{{ bgColor }}"
+                    radius="90"
+                    semi="isSemi"
+                    rounded="rounded"
+                    stroke="{{ stroke }}"
+                    clockwise="clockwise"
+                    iterations="{{ iterations }}"
+                    animation="{{ currentAnimation }}">
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </ion-content>
+
+        <div class="bar bar-footer background" href="#/home" ng-click="finishQuiz()">
+          <div class="title">FINISH</div>
+        </div>
+
+      </ion-view>
+
+    </script>
+
+
+    <script id="score2.html" type="text/ng-template">
+
+
+
+      <div class="bar bar-footer background" href="#/home" ng-click="finishQuiz()">
+
+        <h1 class="title">
+
+        <div >
+          <div class="progress">2</div>
+            <div
+                round-progress
+                max="5"
+                current="2"
+                color='#b9bbbd'
+                bgcolor="#ffffff"
+                radius="17"
+                semi="isSemi"
+                rounded="rounded"
+                stroke="2"
+                clockwise="clockwise"
+                iterations="{{ iterations }}"
+                animation="{{ currentAnimation }}">
+            </div>
+          </div>
+        </div> 
+
+        </h1>
+
+      </div>
+
+      <ion-view title="Final">
+
+      <ion-content>
+
+        <div class="row" align="center">
+
+          <div class="col">
+            <div >.CORRECT ANSWS</div>
+            <div class="progress-wrapper">
+              <div class="progress">2</div>
+              <div
+                  round-progress
+                  max="5"
+                  current="2"
+                  color="#002c64"
+                  bgcolor="{{ bgColor }}"
+                  radius="60"
+                  semi="isSemi"
+                  rounded="rounded"
+                  stroke="{{ stroke }}"
+                  clockwise="clockwise"
+                  iterations="{{ iterations }}"
+                  animation="{{ currentAnimation }}">
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col">
+            <div >WRONG ANSWS</div>
+            <div class="progress-wrapper">
+              <div class="progress">2</div>
+              <div
+                  round-progress
+                  max="5"
+                  current="2"
+                  color="#002c64"
+                  bgcolor="{{ bgColor }}"
+                  radius="60"
+                  semi="isSemi"
+                  rounded="rounded"
+                  stroke="{{ stroke }}"
+                  clockwise="clockwise"
+                  iterations="{{ iterations }}"
+                  animation="{{ currentAnimation }}">
+              </div>
+            </div>
+          </div>
+        
+        </div>
+
+        <div class="row" align="center">
+
+          <div class="col">
+            <div >TOTAL</div>
+            <div class="progress-wrapper">
+              <div class="progress">2</div>
+              <div
+                  round-progress
+                  max="5"
+                  current="2"
+                  color="#002c64"
+                  bgcolor="{{ bgColor }}"
+                  radius="90"
+                  semi="isSemi"
+                  rounded="rounded"
+                  stroke="{{ stroke }}"
+                  clockwise="clockwise"
+                  iterations="{{ iterations }}"
+                  animation="{{ currentAnimation }}">
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </ion-content>
+
+      
+
+      </ion-view>
 
     </script>
 
@@ -318,35 +535,7 @@
 
     </script>
 
-    <script id="score.html" type="text/ng-template">
 
-      <ion-view title="Total Score">
-        <ion-content can-swipe-back="false">
-            <div class="card">
-              <div class="list list-inset">
-              
-
-                  <div class="item">
-                    Correct questions: {{correctQuestions}}
-                  </div>
-                  <div class="item">
-                    Wrong questions: {{wrongQuestions}}
-                  </div>
-                  <div class="item">
-                    Total Score: {{totalScore}}
-                  </div>
-              </div>
-
-            </div>
-
-            <button href="#/home" ng-click="finishQuiz()" class="button button-stable button-block">Finish</button>
-
-        </ion-content>
-      </ion-view>
-
-      
-
-    </script>
 
     <script id="question.html" type="text/ng-template">
 

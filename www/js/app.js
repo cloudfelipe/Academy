@@ -3,14 +3,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
+angular.module('starter', ['ionic', 'ngResource', 'ngCordova', 'angular-svg-round-progress'])
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 
   //Disable swipe to go back
   $ionicConfigProvider.views.swipeBackEnabled(false);
 
-  $urlRouterProvider.otherwise('/quizUI')
+  $urlRouterProvider.otherwise('/quizzes/quiz')
 
   $stateProvider
 
@@ -63,6 +63,12 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     url: '/quizUI',
     templateUrl: 'quizUI2.html',
     controller: 'QuizUICtrl'
+  })
+
+  .state('score2', {
+    url: '/score2',
+    templateUrl: 'score2.html',
+    controller: 'Score2Ctrl'
   })
 
 })
@@ -374,15 +380,40 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
 
 })
 
-.controller('ScoreCtrl', function($scope, quizService, myQuiz, $state, $ionicHistory){
+.controller('ScoreCtrl', function($scope, quizService, myQuiz, $state, $ionicHistory, roundProgressService){
 
   var correctAnswers = myQuiz.correctAnswers;
   var totalQuestions = myQuiz.questions.length;
 
   $scope.correctQuestions = correctAnswers;
   $scope.wrongQuestions = myQuiz.wrongAnswers;
+  $scope.totalQuestions = totalQuestions;
 
   $scope.totalScore = "" + correctAnswers + "/" + totalQuestions;
+
+
+  //Prepare progress bar information
+  $scope.current =        27;
+  $scope.max =            50;
+  $scope.uploadCurrent =  0;
+  $scope.stroke =         9;
+  $scope.radius =         66;
+  $scope.isSemi =         false;
+  $scope.rounded =        false;
+  $scope.clockwise =      true;
+  $scope.currentColor =   '#45ccce';
+  $scope.bgColor =        '#b9bbbd';
+  $scope.iterations =     50;
+  $scope.currentAnimation = 'easeOutQuad';
+  $scope.animations = [];
+  angular.forEach(roundProgressService.animations, function(value, key){
+      $scope.animations.push(key);
+  });
+
+  $scope.getFontSize = function(){
+    return "60px";
+    //return $scope.radius/($scope.isSemi ? 3.5 : 3) + 'px';
+  };
 
 
   //Clean current quiz locally
@@ -525,6 +556,34 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova'])
     // }
 
   }
+
+})
+
+.controller('Score2Ctrl', function($scope, roundProgressService){
+
+  $scope.current =        27;
+  $scope.max =            50;
+  $scope.uploadCurrent =  0;
+  $scope.stroke =         6;
+  $scope.radius =         65;
+  $scope.isSemi =         false;
+  $scope.rounded =        false;
+  $scope.clockwise =      true;
+  $scope.currentColor =   '#45ccce';
+  $scope.bgColor =        '#b9bbbd';
+  $scope.iterations =     50;
+  $scope.currentAnimation = 'easeOutQuad';
+
+  $scope.animations = [];
+
+  angular.forEach(roundProgressService.animations, function(value, key){
+      $scope.animations.push(key);
+  });
+
+  $scope.getFontSize = function(){
+      return $scope.radius/($scope.isSemi ? 3.5 : 3) + 'px';
+  };
+
 
 })
 

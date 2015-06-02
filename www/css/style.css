@@ -4,33 +4,36 @@
    font-family: HelveticaNeueLTS;
    src: url(../resources/fonts/HelveticaNeueLTStd-Bd.otf);
    font-weight: bold;
-}*/
-
-@font-face {
-   font-family: HelveticaNeueLTS;
-   src: url(../resources/fonts/HelveticaNeueLTStd-Lt.otf);
-   font-weight: lighter;
 }
 
 @font-face {
    font-family: HelveticaNeueLTS;
    src: url(../resources/fonts/HelveticaNeueLTStd-Md.otf);
-   font-weight: bold;
+   font-weight: normal;
+}
+*/
+@font-face {
+   font-family: HelveticaNeueLTS;
+   src: url(../resources/fonts/HelveticaNeueLTStd-Lt.otf);
 }
 
 .done {
   text-decoration: line-through;
 }
 
-.pane {
-  /*background-color: #dae0e5 !important; Gris*/
+/*.pane {
 
-  /*Blue*/
   background-color: #002c64 !important
+}*/
+
+
+.totalScr = {
+	background-color: #002c64;
 }
 
 .bar.bar-transparent {
-  background-color: transparent;
+  /*background-color: transparent;*/
+  background-color: #002c64 !important;
   background-image: none;
   border: none;
 }
@@ -131,6 +134,8 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	color: #ffffff;
 
 	font-family: HelveticaNeueLTS;
+	font-weight: lighter;
+
 
 
 }
@@ -144,13 +149,14 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	border:1px solid #dcdcdc;
 	display:inline-block;
 	color:#002c64;
-	font-family:HelveticaNeueLTS;
-	font-size:15px;
 	padding:2px 15px;
 	text-decoration:none;
-	
+	font-size:15px;
 }
 
+.home-btn{
+	font-size:20px;
+}
 
 
 .question-text  { 
@@ -238,3 +244,40 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
 	top:1px;
 }
 
+
+/*Circular Progress bar*/
+
+.progress{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    line-height: 6em;
+    font-size:1em;
+    text-align: center;
+    color: black;
+    font-family:HelveticaNeueLTS;
+    font-weight: 100;
+
+}
+
+.progress-wrapper{
+    position: relative;
+    margin:20px auto;
+    font-size: 60px;
+
+}
+
+
+.background, .background .pane, .background .item, .background .item-complex .item-content{
+    background-color: #002c64;
+}
+
+.white-background{
+	background-color: #ffffff;
+}
+
+.score-text{
+	font-family: HelveticaNeueLTS;
+	color:black; 
+	font-size:15px;
+}
