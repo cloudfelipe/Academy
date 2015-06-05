@@ -360,7 +360,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova', 'angular-svg-roun
   }
 
   $scope.confirmQuit = function(){
-    $cordovaDialogs.confirm('Are you sure?', 'Quit Quizz', ['Yes','No'])
+    $cordovaDialogs.confirm('Are you sure?', 'Quit Quiz', ['Yes','No'])
       .then(function(buttonIndex) {
         // no button = 0, 'OK' = 1, 'Cancel' = 2
         if (buttonIndex == 1) {
