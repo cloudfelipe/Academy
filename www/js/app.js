@@ -433,6 +433,8 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova', 'angular-svg-roun
 
 .controller('QuizUICtrl', function($scope) {
 
+  
+
   var currentCount = 2;
 
   $scope.showNextbutton = false;

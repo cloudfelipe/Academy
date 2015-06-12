@@ -51,19 +51,18 @@
         <ion-content padding="true" can-swipe-back="false" class="has-header">
 
 
-          <div class="spacer" style="display: inline-block; height: 30px;"></div>
-
           <div align="center">
             <img src="img/academiaLogo.png" style="width:70%; height: auto;">
+            <label style="font-size:25px;" class="myLabel">Obstetrics - MCQ’s</label>
           </div>
 
           <div class="spacer" style="display: inline-block; height: 30px;"></div>
 
           
-          <button ng-click="commenceQuiz()" class="button barBtn home-btn button-block" ng-class="{'button button-block button-balanced': item.state == 'great' , 'button button-block button-assertive': item.state == 'bad'}" ng-disabled="newQuizBtnDisabled">
-            NEW QUIZ
-          </button>
-          <button ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn home-btn button-block">CURRENT QUIZ</button>
+          <button style="padding: 2px 29%;" ng-click="commenceQuiz()" class="button barBtn icon-left ion-plus-circled  home-btn button-block" 
+          ng-disabled="newQuizBtnDisabled">NEW QUIZ</button>
+
+          <button style="padding: 2px 22%;" ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn icon-left ion-android-arrow-dropdown-circle home-btn button-block">CURRENT QUIZ</button>
 
         </ion-content>
 
@@ -260,9 +259,11 @@
 
       <ion-view title="Final">
 
-      <ion-content>
+      <ion-content >
 
-        <div class="row" align="center">
+      <div class="contenedor" style="">
+
+        <div  class="row" align="center">
 
           <div class="col">
             <div >.CORRECT ANSWS</div>
@@ -334,6 +335,8 @@
           </div>
         </div>
 
+      </div>
+
       </ion-content>
 
       
@@ -358,18 +361,12 @@
         </button>
       </ion-nav-buttons>
 
-      <ion-content scroll="true" can-swipe-back="false" class="has-header">
+      <ion-content  scroll = "false" can-swipe-back="false" class="has-header">
 
-        <br>
+      <label class="myLabel" style="color: black;">{{item.questionText}} width: {{width}}, height: {{height}}</label>
 
-        <label class="myLabel">{{item.questionText}} </label>
 
-        <br>
-        <br>
-
-        <ion-scroll direction="y">
-
-        </ion-scroll>
+      <ion-scroll zooming="true" direction="y" style="height: 100%">
 
         <div class="list">
 
@@ -435,9 +432,11 @@
 
       </div>
 
+      </ion-scroll>
 
 
       </ion-content>
+
 
     </ion-view>
 
