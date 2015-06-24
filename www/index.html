@@ -62,7 +62,7 @@
           <button style="padding: 2px 29%;" ng-click="commenceQuiz()" class="button barBtn icon-left ion-plus-circled  home-btn button-block" 
           ng-disabled="newQuizBtnDisabled">NEW QUIZ</button>
 
-          <button style="padding: 2px 22%;" ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn icon-left ion-android-arrow-dropdown-circle home-btn button-block">CURRENT QUIZ</button>
+          <button style="padding: 2px 21%;" ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn icon-left ion-android-arrow-dropdown-circle home-btn button-block">CURRENT QUIZ</button>
 
         </ion-content>
 
@@ -217,9 +217,9 @@
 
         </ion-content>
 
-        <div class="bar bar-footer background" href="#/home" ng-click="finishQuiz()">
-          <div class="title">FINISH</div>
-        </div>
+        <ion-footer-bar align-title="left" href="#/home" ng-click="finishQuiz()"class="background">
+          <h1 class="title">FINISH</h1>
+        </ion-footer-bar>
 
       </ion-view>
 
@@ -229,35 +229,18 @@
     <script id="score2.html" type="text/ng-template">
 
 
-
-      <div class="bar bar-footer background" href="#/home" ng-click="finishQuiz()">
-
+      <ion-footer-bar align-title="center" class="background">
         <h1 class="title">
 
-        <div >
-          <div class="progress">2</div>
-            <div
-                round-progress
-                max="5"
-                current="2"
-                color='#b9bbbd'
-                bgcolor="#ffffff"
-                radius="17"
-                semi="isSemi"
-                rounded="rounded"
-                stroke="2"
-                clockwise="clockwise"
-                iterations="{{ iterations }}"
-                animation="{{ currentAnimation }}">
-            </div>
-          </div>
-        </div> 
+        SCORE
 
         </h1>
+      </ion-footer-bar>
 
-      </div>
 
-      <ion-view title="Final">
+
+
+      <ion-view title="SCORE">
 
       <ion-content >
 
@@ -339,8 +322,6 @@
 
       </ion-content>
 
-      
-
       </ion-view>
 
     </script>
@@ -366,7 +347,7 @@
       <label class="myLabel" style="color: black;">{{item.questionText}} width: {{width}}, height: {{height}}</label>
 
 
-      <ion-scroll zooming="true" direction="y" style="height: 100%">
+      <ion-scroll zooming="true" direction="y" style="height: 72%">
 
         <div class="list">
 

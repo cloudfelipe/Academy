@@ -561,7 +561,7 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova', 'angular-svg-roun
 
 })
 
-.controller('Score2Ctrl', function($scope, roundProgressService){
+.controller('Score2Ctrl', function($scope, roundProgressService, $ionicScrollDelegate){
 
   $scope.current =        27;
   $scope.max =            50;
@@ -581,6 +581,8 @@ angular.module('starter', ['ionic', 'ngResource', 'ngCordova', 'angular-svg-roun
   angular.forEach(roundProgressService.animations, function(value, key){
       $scope.animations.push(key);
   });
+
+  $ionicScrollDelegate.resize();
 
   $scope.getFontSize = function(){
       return $scope.radius/($scope.isSemi ? 3.5 : 3) + 'px';

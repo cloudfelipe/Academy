@@ -1,0 +1,5 @@
+Plugins:
+
+ionic plugin add cordova-plugin-dialogs
+
+ionic plugin add cordova-plugin-statusbar
