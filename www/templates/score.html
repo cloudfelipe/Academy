@@ -1,0 +1,81 @@
+<ion-view title={{title}} class="background white-background">
+
+  <ion-content can-swipe-back="false" >
+
+    <br>
+
+    <div class="row" align="center">
+
+      <div class="col">
+        <div class="score-text">Correct Answers</div>
+        <div class="progress-wrapper" ng-style="{'font-size': getFontSize()}">
+          <div class="progress" style="line-height: 2.5em;">{{correctQuestions}}</div>
+            <div
+                round-progress
+                max=totalQuestions
+                current=correctQuestions
+                color="#006d4f"
+                bgcolor="{{ bgColor }}"
+                radius="{{radius}}"
+                semi="isSemi"
+                rounded="rounded"
+                stroke="{{ stroke }}"
+                clockwise="clockwise"
+                iterations="{{ iterations }}"
+                animation="{{ currentAnimation }}">
+            </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="score-text">Incorrect Answers</div>
+        <div class="progress-wrapper" ng-style="{'font-size': getFontSize()}">
+          <div class="progress" style="line-height: 2.5em;">{{wrongQuestions}}</div>
+            <div
+                round-progress
+                max=totalQuestions
+                current=wrongQuestions
+                color="#b8292f"
+                bgcolor="{{ bgColor }}"
+                radius="{{radius}}"
+                semi="isSemi"
+                rounded="rounded"
+                stroke="{{ stroke }}"
+                clockwise="clockwise"
+                iterations="{{ iterations }}"
+                animation="{{ currentAnimation }}">
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" align="center">
+      <div class="col">
+        <div class="score-text">Results</div>
+        <div class="progress-wrapper">
+          <div class="progress" style="line-height: 3.2em;">{{ totalScore }}</div>
+          <div
+              round-progress
+              max=totalQuestions
+              current=correctQuestions
+              color="#002c64"
+              bgcolor="{{ bgColor }}"
+              radius="90"
+              semi="isSemi"
+              rounded="rounded"
+              stroke="{{ stroke }}"
+              clockwise="clockwise"
+              iterations="{{ iterations }}"
+              animation="{{ currentAnimation }}">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar align-title="left" href="#/home" ng-click="finishQuiz()"class="background">
+    <h1 class="title">FINISH</h1>
+  </ion-footer-bar>
+
+</ion-view>

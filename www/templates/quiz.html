@@ -1,0 +1,41 @@
+<ion-view title={{countIntoTitle}} class="background">
+
+  <ion-nav-buttons side="primary">
+    <button class="barBtn" ng-click="confirmQuit()">
+      QUIT
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <button class="barBtn"  ng-show="showNextbutton" ng-click="nextQuestion({{questionIndex}})">
+      NEXT
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content padding="false" scroll="true" can-swipe-back="false" class="has-header">
+
+    <div class="spacer" style="display: inline-block; height: 10px;"></div>
+
+    <label  style="padding: 3%;" class="myLabel">{{item.questionText}} </label>
+
+    <div class="spacer" style="display: inline-block; height: 20px;"></div>
+
+    <ion-list >
+      <ion-item  class="item  item-image-left item-text-wrap intro-list-item"
+        ng-repeat="item in item.answers" 
+        ng-click="selectAnswer($index, item)"
+        ng-disabled="questionBtnDisabled"
+        style="background-color: white !important;"
+        >
+
+        <i class="image-left-container">
+          <img ng-class="{'image-left question-img{{$index}}': item.state == 'normal', 'image-left success-img': item.state == 'great', 'image-left fail-img': item.state == 'bad'}" >
+        </i>
+
+        <label ng-class="{'question-text success-color': item.state == 'great','image-left fail-color': item.state == 'bad'}">{{item.answerText}}</label>
+
+      </ion-item>
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

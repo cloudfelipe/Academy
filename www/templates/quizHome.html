@@ -1,0 +1,22 @@
+<ion-view  title={{title}} class="background" >
+
+
+  <ion-content padding="true" can-swipe-back="false" class="has-header">
+
+
+    <div align="center">
+      <img src="img/academiaLogo.png" style="width:70%; height: auto;">
+      <label style="font-size:25px;" class="myLabel">Obstetrics - MCQ’s</label>
+    </div>
+
+    <div class="spacer" style="display: inline-block; height: 30px;"></div>
+
+    
+    <button style="padding: 2px 29%;" ng-click="commenceQuiz()" class="button barBtn icon-left ion-plus-circled  home-btn button-block" 
+    ng-disabled="newQuizBtnDisabled">NEW QUIZ</button>
+
+    <button style="padding: 2px 21%;" ng-show="showResumeButton" ng-click="resumeQuiz()" class="button barBtn icon-left ion-android-arrow-dropdown-circle home-btn button-block">CURRENT QUIZ</button>
+
+  </ion-content>
+
+</ion-view>

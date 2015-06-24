@@ -1,0 +1,91 @@
+<ion-footer-bar align-title="center" class="background">
+  <h1 class="title">
+
+  SCORE
+
+  </h1>
+</ion-footer-bar>
+
+<ion-view title="SCORE">
+
+<ion-content >
+
+<div class="contenedor" style="">
+
+  <div  class="row" align="center">
+
+    <div class="col">
+      <div >.CORRECT ANSWS</div>
+      <div class="progress-wrapper">
+        <div class="progress">2</div>
+        <div
+            round-progress
+            max="5"
+            current="2"
+            color="#002c64"
+            bgcolor="{{ bgColor }}"
+            radius="60"
+            semi="isSemi"
+            rounded="rounded"
+            stroke="{{ stroke }}"
+            clockwise="clockwise"
+            iterations="{{ iterations }}"
+            animation="{{ currentAnimation }}">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col">
+      <div >WRONG ANSWS</div>
+      <div class="progress-wrapper">
+        <div class="progress">2</div>
+        <div
+            round-progress
+            max="5"
+            current="2"
+            color="#002c64"
+            bgcolor="{{ bgColor }}"
+            radius="60"
+            semi="isSemi"
+            rounded="rounded"
+            stroke="{{ stroke }}"
+            clockwise="clockwise"
+            iterations="{{ iterations }}"
+            animation="{{ currentAnimation }}">
+        </div>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="row" align="center">
+
+    <div class="col">
+      <div >TOTAL</div>
+      <div class="progress-wrapper">
+        <div class="progress">2</div>
+        <div
+            round-progress
+            max="5"
+            current="2"
+            color="#002c64"
+            bgcolor="{{ bgColor }}"
+            radius="90"
+            semi="isSemi"
+            rounded="rounded"
+            stroke="{{ stroke }}"
+            clockwise="clockwise"
+            iterations="{{ iterations }}"
+            animation="{{ currentAnimation }}">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+</ion-content>
+
+</ion-view>

@@ -1,0 +1,91 @@
+<ion-view title={{countIntoTitle}}>
+
+  <ion-nav-buttons side="primary">
+    <button class="barBtn"  ng-click="confirmQuit()">
+      QUIT
+    </button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="secondary">
+    <button class="barBtn"  ng-click="nextQuestion({{questionIndex}})">
+      NEXT
+    </button>
+  </ion-nav-buttons>
+
+  <ion-content  scroll = "false" can-swipe-back="false" class="has-header">
+
+  <label class="myLabel" style="color: black;">{{item.questionText}} width: {{width}}, height: {{height}}</label>
+
+
+  <ion-scroll zooming="true" direction="y" style="height: 72%">
+
+    <div class="list">
+
+    <a class="item  item-image-left item-text-wrap intro-list-item" href="#">
+      
+      <i class="image-left-container">
+        <img class="image-left" src="img/questionSuccess.png" >
+      </i>
+
+      <label class="question-text success-color">
+        Back off, man. Im a scientist. Back off, man. Im a scientist. Back off, man. Im a scientist.sssssssssssss
+      </label>
+      
+    </a>
+
+     <a class="item  item-image-left item-text-wrap intro-list-item" href="#">
+      
+      <i class="image-left-container">
+        <img class="image-left" src="img/questionFail.png" >
+      </i>
+
+      <label class="question-text fail-color">
+        Back off, man. Im a scientist. Back off, man. Im a scientist. Back off, man. Im a scientist.sssssssssssss
+      </label>
+      
+    </a>
+
+    <a class="item item-image-left item-text-wrap intro-list-item" href="#">
+      
+      <i class="image-left-container">
+        <img class="image-left" src="img/questionLetterC.png" >
+      </i>
+
+      <label class="question-text">
+        Back off, man. Im a scientist. 
+      </label>
+      
+    </a>
+
+    <a class="item item-image-left item-text-wrap intro-list-item" href="#">
+      
+      <i class="image-left-container">
+        <img class="image-left" src="img/questionLetterD.png" >
+      </i>
+
+      <label class="question-text">
+        Back off, man. Im a scientist. ientist. 
+      </label>
+      
+    </a>
+
+    <a class="item item-image-left item-text-wrap intro-list-item" href="#">
+      
+      <i class="image-left-container">
+        <img class="image-left" src="img/questionLetterE.png" >
+      </i>
+
+      <label class="question-text">
+        Back off, man. Im a scientist. , man. Im a scientist. 
+      </label>
+      
+    </a>
+
+  </div>
+
+  </ion-scroll>
+
+
+  </ion-content>
+
+
+</ion-view>
